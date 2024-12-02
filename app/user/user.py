@@ -1,6 +1,7 @@
 from library import Library
 from services import LibraryService
 from utils.pharses import MainMenu
+from utils.handlers import InputHandler
 
 
 class User:
@@ -8,9 +9,9 @@ class User:
         self.library_service = library_service
 
     def add_book(self):
-        author = input("Введите название автора: ")
-        message = self.library_service.add_book(author=author)
-        print(message)
+        details = InputHandler.get_book_details()
+        if details:
+            self.library_service.add_book(details=details)
 
 
 def main_menu():

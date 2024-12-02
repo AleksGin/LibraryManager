@@ -14,12 +14,12 @@ class Library:
         except Exception:
             return []
 
-    def save_book(self):
+    def save_book(self) -> None:
         with open(self.filename, "w", encoding="utf-8") as file:
             json.dump(self.books, file, indent=4, ensure_ascii=False)
 
-    def add_book(self, author: str):
-        self.books.append(author)
+    def add_book(self, details: dict):
+        self.books.append(details)
         self.save_book()
 
     def remove_books(self, title):
@@ -30,5 +30,5 @@ class Library:
         if book_to_remove:
             self.books.remove(book_to_remove)
             self.save_book()
-            return Phrases.successful_removal_text.format(title)
+            return Phrases.successful_removal.format(title)
         return Phrases.book_not_found.format(title)

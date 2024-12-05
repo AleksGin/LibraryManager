@@ -1,4 +1,4 @@
-from main_menu import Command
+from commands import Command
 
 
 class SearchByTypeCommand(Command):
@@ -17,10 +17,10 @@ class SearchByTypeCommand(Command):
         self.allow_numeric = allow_numeric
 
     def execute(self):
-        self.user.search_type_author_commmand(
+        self.user.search_by_any_type_commmand(
             search_type=self.search_type,
             prompt=self.prompt,
-            only_numeric=self.only_numeric,
+            numeric_only=self.only_numeric,
             allow_numeric=self.allow_numeric,
         )
 

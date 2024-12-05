@@ -1,4 +1,4 @@
-from library import Library
+from repository import LibraryRepository
 from utils.pharses import (
     ErrorPhrases,
     Phrases,
@@ -7,7 +7,7 @@ from utils.pharses import (
 
 
 class LibraryService:
-    def __init__(self, library: Library) -> None:
+    def __init__(self, library: LibraryRepository) -> None:
         self.library = library
         self.current_id = max((book["id"] for book in self.library.books), default=0)
 

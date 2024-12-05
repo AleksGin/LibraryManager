@@ -16,7 +16,7 @@ class SearchByTypeCommand(Command):
         self.only_numeric = only_numeric
         self.allow_numeric = allow_numeric
 
-    def execute(self):
+    def execute(self) -> None:
         self.user.search_by_any_type_commmand(
             search_type=self.search_type,
             prompt=self.prompt,

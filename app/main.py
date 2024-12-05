@@ -23,7 +23,7 @@ class Application:
         self.libary_service = LibraryService(library=self.library)
         self.user = User(library_service=self.libary_service)
 
-    def main_menu(self):
+    def main_menu(self) -> None:
         options = {
             "1": (
                 "Добавить книгу",
@@ -54,7 +54,7 @@ class Application:
         menu = Menu(options=options)
         menu.show_menu()
 
-    def search_menu(self):
+    def search_menu(self) -> None:
         options = {
             "1": (
                 "По автору",

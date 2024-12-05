@@ -11,44 +11,49 @@ from utils.pharses import (
 
 class InputHandler:
     @staticmethod
-    def get_book_details() -> dict[str, str]:
+    def get_book_details() -> dict[str, int | str]:
         try:
-            title = InputHandler._validate_book_details(
+            title = InputHandler.validate_book_details(
                 text=Phrases.ask_for_title,
                 allow_numeric=True,
             )
-            author = InputHandler._validate_book_details(
+            author = InputHandler.validate_book_details(
                 Phrases.ask_for_author,
                 allow_numeric=False,
             )
-            year = InputHandler._validate_book_details(
+            year = InputHandler.validate_book_details(
                 Phrases.ask_for_year,
                 only_numeric=True,
             )
         except ValueError as e:
             print(f"Ошибка: {e}")
-        return {"title": title, "author": author, "year": year}
+        return {
+            "title": title,
+            "author": author,
+            "year": year,
+        }
 
     @staticmethod
-    def _validate_book_details(
+    def validate_book_details(
         text: str,
         allow_numeric: bool = False,
         only_numeric: bool = False,
-    ) -> str:
+    ) -> int | str:
         while True:
             value = input(text)
             try:
                 InputHandler._check_for_empty(value=value)
                 if only_numeric:
                     return InputHandler._check_is_only_numeric(value=value)
-                elif allow_numeric:
+                if allow_numeric:
                     return InputHandler._check_allow_numeric(
                         value=value, allow_numeric=True
                     )
-                else:
+                if not allow_numeric:
                     return InputHandler._check_allow_numeric(
                         value=value, allow_numeric=False
                     )
+
             except InvalidTypeError:
                 print(ErrorPhrases.wrong_input_value)
             except EmptyValueError:
@@ -61,9 +66,9 @@ class InputHandler:
         return value.strip().title()
 
     @staticmethod
-    def _check_is_only_numeric(value: str) -> str:
+    def _check_is_only_numeric(value: str) -> int:
         if value.isdigit():
-            return value.strip()
+            return int(value)
         else:
             raise InvalidTypeError()
 
@@ -77,3 +82,18 @@ class InputHandler:
         else:
             if value.isdigit():
                 raise InvalidTypeError()
+            else:
+                return value.strip().capitalize()
+
+    @staticmethod
+    def check_for_correct_status() -> str:
+        while True:
+            try:
+                status = input(Phrases.ask_for_status)
+                InputHandler._check_for_empty(value=status)
+                if status in ["В наличии", "Выдана"]:
+                    return status
+                else:
+                    print(ErrorPhrases.wrong_status)
+            except EmptyValueError:
+                print(ErrorPhrases.empty_value_error)

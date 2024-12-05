@@ -135,6 +135,8 @@ class LibraryService:
     def __init__(self, library: LibraryRepository) -> None:
         self.library = library
         self.current_id = max((book["id"] for book in self.library.books), default=0)
+    
+    ...
 ```
 ### Меню: Обрабатывает логику отображения меню.
 
@@ -145,6 +147,8 @@ class Menu:
         options: dict[str, tuple[str, Command]],
     ) -> None:
         self.options = options
+    
+    ...
 ```
 
 

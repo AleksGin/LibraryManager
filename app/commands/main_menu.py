@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from utils.pharses import Phrases
+import sys
 
 
 class Command(ABC):
@@ -51,4 +52,4 @@ class ShowAllBooksCommand(Command):
 class ExitCommand(Command):
     def execute(self):
         print(Phrases.bye_bye_phrase)
-        return False
+        sys.exit()

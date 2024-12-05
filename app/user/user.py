@@ -1,11 +1,6 @@
-from library import Library
 from services import LibraryService
 from utils.handlers import InputHandler
-from utils.pharses import (
-    MainMenu,
-    Phrases,
-    SearchSelectionMenu,
-)
+from utils.pharses import Phrases
 
 
 class User:
@@ -22,7 +17,7 @@ class User:
         )
         self.library_service.delete_book(book_id=validated_id)
 
-    def search_type_author_commmand(
+    def search_by_any_type_commmand(
         self,
         search_type: str,
         prompt: str,
@@ -52,60 +47,5 @@ class User:
             status=correct_status,
         )
 
-    def show_all_books_command(self):
+    def show_all_books_command(self) -> None:
         self.library_service.get_all_books()
-
-
-def main_menu():
-    library = Library()
-    library_service = LibraryService(library=library)
-    user = User(library_service=library_service)
-
-    while True:
-        print(MainMenu.menu_text)
-        command = input("> ")
-
-        if command == "1":
-            user.add_book_command()
-        if command == "2":
-            search_menu()
-        if command == "3":
-            user.delete_book_command()
-        if command == "4":
-            user.change_status_command()
-        if command == "5":
-            user.show_all_books_command()
-
-
-def search_menu():
-    library = Library()
-    library_service = LibraryService(library=library)
-    user = User(library_service=library_service)
-
-    while True:
-        print(SearchSelectionMenu.selection_text)
-        command = input("> ")
-
-        if command == "1":
-            user.search_type_author_commmand(
-                search_type="author",
-                prompt=Phrases.ask_for_author,
-            )
-        if command == "2":
-            user.search_type_author_commmand(
-                search_type="year",
-                prompt=Phrases.ask_for_year,
-                numeric_only=True,
-            )
-        if command == "3":
-            user.search_type_author_commmand(
-                search_type="title",
-                prompt=Phrases.ask_for_title,
-                allow_numeric=True,
-            )
-        if command == "4":
-            main_menu()
-
-
-if __name__ == "__main__":
-    main_menu()

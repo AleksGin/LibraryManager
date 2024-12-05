@@ -12,7 +12,7 @@ from .phrases import (
     ErrorPhrases,
     ParseForm,
 )
-from .main_menu import (
+from .menus_text import (
     MainMenu,
     SearchSelectionMenu,
 )

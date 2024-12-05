@@ -11,6 +11,9 @@ class Phrases:
     ask_for_status = (
         '\n~ Возможные статусы: "В наличии", "Выдана" ~\n' "\nВведите статус: "
     )
+    bye_bye_phrase = (
+        "\nЗавершаю работу... До свидания!\n"
+    )
 
 
 class ErrorPhrases:

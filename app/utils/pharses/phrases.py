@@ -25,6 +25,7 @@ class ErrorPhrases:
     books_by_search_type_not_found = '\nКниги по запросу "{}" не найдены :('
     library_is_empty = "\nВ данный момент книги отсутствуют :("
     wrong_status = '\n<<Ошибка>>: статус может быть только "В наличии" или "Выдан"!'
+    wrong_command = "\nНеправильная команда!"
 
 
 class ParseForm:
